@@ -2,8 +2,9 @@ const express = require("express");
 const App = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
-const port = 8000;
-const authRoute = require('./routes/Auth')
+
+const authRoute = require("./routes/Auth");
+const userRoute = require("./routes/Users");
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -12,15 +13,12 @@ mongoose
     useCreateIndex: true,
   })
   .then(console.log("db Connected"))
-  .catch(err => console.log(err))
+  .catch((err) => console.log(err));
 
-App.use(express.json())
-App.use('/api',authRoute)
+App.use(express.json());
+App.use("/api/auth", authRoute);
+App.use("/api/users", userRoute);
 
-App.get("/", (req, res) => {
-  res.send("test");
-});
-
-App.listen(port, () => {
+App.listen(process.env.PORT_NO, () => {
   console.log("server running");
 });
