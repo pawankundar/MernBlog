@@ -73,7 +73,7 @@ exports.getUser = (req,res)=>{
         })
     }else{
         return res.status(400).json({
-            error : "you can only get your user info"
+            error : "unauthorized user"
         })
     }
 }
