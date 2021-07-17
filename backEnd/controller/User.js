@@ -55,25 +55,20 @@ exports.deleteUser = (req, res) => {
   }
 };
 
-
-exports.getUser = (req,res)=>{
-    if(req.body.userId === req.params.id){
-        User.findById(req.params.id).then((user,err)=>{
-            if(err){
-                return res.status(400).json({
-                    error : err
-                })
-            }
-            user.password = undefined
-            return res.status(200).json(user)
-        }).catch(err => {
-            return res.status(400).json({
-                error : "user not found"
-            })
-        })
-    }else{
+exports.getUser = (req, res) => {
+  User.findById(req.params.id)
+    .then((user, err) => {
+      if (err) {
         return res.status(400).json({
-            error : "unauthorized user"
-        })
-    }
-}
+          error: err,
+        });
+      }
+      user.password = undefined;
+      return res.status(200).json(user);
+    })
+    .catch((err) => {
+      return res.status(400).json({
+        error: "user not found",
+      });
+    });
+};
