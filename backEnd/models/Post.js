@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,
@@ -13,6 +14,10 @@ const PostSchema = new mongoose.Schema(
     photo: {
       type: String,
     },
+    username: {
+      type: String,
+      required: true,
+    },
     categories: {
       type: Array,
     },
@@ -20,4 +25,4 @@ const PostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.export = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("Post", PostSchema);
