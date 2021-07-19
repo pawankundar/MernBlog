@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
     cb(null, "images");
   },
   filename: (req, file, cb) => {
-    cb(null, req.body.name); //"file.jpeg for postMan testing"
+    cb(null, req.body.name); //"file.jpeg for postMan testing as req.body and image togather cannot be sent"
   },
 });
 
