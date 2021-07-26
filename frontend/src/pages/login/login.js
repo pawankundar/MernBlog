@@ -1,3 +1,5 @@
+const { Link } = require("react-router-dom");
+
 require("./login.css");
 const Login = () => {
   return (
@@ -18,7 +20,9 @@ const Login = () => {
         />
         <button className="loginButton">Login</button>
       </form>
-      <button className="registerButton">Register</button>
+      <Link className="link" to="/signup">
+        <button className="registerButton">Register</button>
+      </Link>
     </div>
   );
 };
