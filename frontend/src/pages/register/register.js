@@ -1,3 +1,5 @@
+const { Link } = require("react-router-dom");
+
 require("./register.css");
 const Register = () => {
   return (
@@ -5,7 +7,12 @@ const Register = () => {
       <span className="Registertitle">Register</span>
       <form className="registerForm">
         <label>Username</label>
-        <input type="text" className='registerInput' name="username" placeholder='Enter your username' />
+        <input
+          type="text"
+          className="registerInput"
+          name="username"
+          placeholder="Enter your username"
+        />
         <label>Email</label>
         <input
           type="email"
@@ -22,7 +29,9 @@ const Register = () => {
         />
         <button className="registerBtn">Register</button>
       </form>
-      <button className="loginBtn">Login</button>
+      <Link className="link" to="/login">
+        <button className="loginBtn">Login</button>
+      </Link>
     </div>
   );
 };
