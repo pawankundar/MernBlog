@@ -106,9 +106,7 @@ exports.getPost = (req, res) => {
           error: err,
         });
       }
-      return res.status(200).json({
-        post: foundPost,
-      });
+      return res.status(200).json(foundPost);
     })
     .catch((err) => {
       return res.status(400).json({
