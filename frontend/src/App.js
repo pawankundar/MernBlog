@@ -5,10 +5,12 @@ import Register from "./pages/register/register";
 import Settings from "./pages/settings/settings";
 import Single from "./pages/single/single";
 import WritePost from "./pages/writePost/writePost";
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "./context/Context";
 
 const App = () => {
-  const user = true;
+  const {user} = useContext(Context);
   return (
     <BrowserRouter>
       <NavBar />
