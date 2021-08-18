@@ -1,41 +1,28 @@
+const { Link } = require("react-router-dom");
+
 require("./post.css");
-const Post = () => {
+const Post = ({ data }) => {
   return (
     <div className="Posts">
-      <img
-        className="postImage"
-        src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        alt="postImage"
-      />
+      {data.photo && (
+        <img className="postImage" src={data.photo} alt="postImage" />
+      )}
       <div className="postInfo">
         <div className="categories">
-          <span className="category">Tech</span>
-          <span className="category">Art</span>
-          <span className="category">Music</span>
+          {data.categories.map((cate,key)=>(
+            <span className="category" key={key}>{cate.name}</span>
+          ))}
         </div>
-        <span className="title">Demo Post Title</span>
+          <Link className="link" to={`/post/${data._id}`}>
+          <span className="title"> {data.title}  </span>
+          </Link>
+       
         <hr />
-        <span className="postDate">1 Day ago</span>
+        <span className="postDate">
+          {new Date(data.createdAt).toDateString()}
+        </span>
       </div>
-      <p className="description">
-        
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
-        officia architecto deserunt deleniti? Labore ipsum aspernatur magnam
-        fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione
-        atque, exercitationem quibusdam, reiciendis odio laboriosam?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
-        officia architecto deserunt deleniti? Labore ipsum aspernatur magnam
-        fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione
-        atque, exercitationem quibusdam, reiciendis odio laboriosam?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
-        officia architecto deserunt deleniti? Labore ipsum aspernatur magnam
-        fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione
-        atque, exercitationem quibusdam, reiciendis odio laboriosam?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
-        officia architecto deserunt deleniti? Labore ipsum aspernatur magnam
-        fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione
-        atque, exercitationem quibusdam, reiciendis odio laboriosam?
-      </p>
+      <p className="description">{data.description}</p>
     </div>
   );
 };
