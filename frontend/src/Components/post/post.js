@@ -2,10 +2,11 @@ const { Link } = require("react-router-dom");
 
 require("./post.css");
 const Post = ({ data }) => {
+  const ImageLink = "http://localhost:8000/images/"
   return (
     <div className="Posts">
       {data.photo && (
-        <img className="postImage" src={data.photo} alt="postImage" />
+        <img className="postImage" src={ImageLink + data.photo +".jpg"} alt="postImage" />
       )}
       <div className="postInfo">
         <div className="categories">
