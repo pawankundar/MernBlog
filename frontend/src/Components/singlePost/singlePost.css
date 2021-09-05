@@ -4,6 +4,8 @@
 .wrapper {
   padding: 20px;
   padding-right: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .postImage {
@@ -17,6 +19,17 @@
   margin: 10px;
   font-family: "Lora", serif;
   font-size: 28px;
+}
+.postTitleEdit {
+  text-align: center;
+  margin: 10px;
+  font-family: "Lora", serif;
+  font-size: 28px;
+  border: none;
+  border-bottom: 1px  solid lightgray;
+}
+.postTitleEdit:focus{
+  outline: none;
 }
 .EditButtons {
   float: right;
@@ -43,16 +56,61 @@
   color: #40826d;
 }
 
-.postDescription{
-    color: #666;
-    font-size: 18px;
-    line-height: 25px;
-    font-family: "Varela Round", sans-serif;
+.postDescription {
+  color: #666;
+  font-size: 18px;
+  line-height: 25px;
+  font-family: "Varela Round", sans-serif;
 }
 
-.postDescription::first-letter{
-    margin-left: 20px;
-    font-size: 30px;
-    font-weight: 600;
-    
+.postDescription::first-letter {
+  margin-left: 20px;
+  font-size: 30px;
+  font-weight: 600;
 }
+
+.updateButtonDiv{
+
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.postDescriptionEdit {
+  color: #666;
+  font-size: 18px;
+  line-height: 25px;
+  font-family: "Varela Round", sans-serif;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  height: 100px;
+}
+
+.postDescriptionEdit:focus{
+  outline: none;
+}
+
+.updatePostButton{
+  border: none;
+  background-color: teal;
+  padding: 5px;
+  width: 100px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 20px;
+}
+
+.discardPostButton{
+  border: none;
+  background-color:tomato;
+  padding: 5px;
+  width: 100px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 20px;
+}
+
