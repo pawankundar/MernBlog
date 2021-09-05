@@ -3,6 +3,7 @@ const App = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
 const multer = require("multer");
+const path = require("path");
 
 const authRoute = require("./routes/Auth");
 const userRoute = require("./routes/Users");
@@ -35,9 +36,10 @@ App.post("/api/upload", upload.single("file"), (req, res) => {
     message: "file has been uploaded",
   });
 });
-//
+
 
 App.use(express.json());
+App.use("/images",express.static(path.join(__dirname,"/images")))
 App.use("/api/auth", authRoute);
 App.use("/api/users", userRoute);
 App.use("/api/posts", postRoute);
