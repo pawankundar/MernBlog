@@ -1,7 +1,44 @@
+import axios from "axios";
+import { useContext, useState } from "react";
+import { Context } from "../../context/Context";
+
 const { default: SideBar } = require("../../Components/sideBar/sideBar");
 
 require("./settings.css");
+
 const Settings = () => {
+  const [file, setFile] = useState(null);
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+
+  const { user } = useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const updatedUser = {
+      userId: user._id,
+      username,
+      email,
+      password,
+    };
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      updatedUser.profilePic = fileName;
+      await axios.post("/upload", data).catch((err) => {
+        console.log("error in upload");
+      });
+    }
+    await axios.put("/users/" + user._id, updatedUser).catch(() => {
+      setError(true);
+    });
+  };
+  const ImageLink = "http://localhost:8000/images/";
   return (
     <div className="settings">
       <div className="wrapper">
@@ -9,11 +46,15 @@ const Settings = () => {
           <span className="updateProfile">Update Profile</span>
           <span className="deleteProfile">Delete Profile</span>
         </div>
-        <form className="settingsForm">
+        <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="profilePic">
             <img
-              src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={
+                user.profilePic
+                  ? ImageLink + user.profilePic + ".jpg"
+                  : ImageLink + "default.png"
+              }
               alt=""
             />
             <label htmlFor="picInput">
@@ -24,17 +65,36 @@ const Settings = () => {
               className="picInput"
               type="file"
               style={{ display: "none" }}
+              onChange={(e) => setFile(e.target.files[0])}
             ></input>
           </div>
           <label>Username</label>
-          <input type="text" placeholder="pawan" name="name"></input>
+          <input
+            type="text"
+            placeholder={user.username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            name="name"
+          ></input>
           <label>Email</label>
-          <input type="email" placeholder="pawan@mail.com" name="email"></input>
+          <input
+            type="email"
+            placeholder={user.email}
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
           <label>Password</label>
-          <input type="password" placeholder="Password" name="password" />
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button className="updateButton" type="submit">
             Update
           </button>
+          {error && <h1>Error while updating the credentials</h1>}
         </form>
       </div>
 
