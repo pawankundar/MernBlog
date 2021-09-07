@@ -10,6 +10,7 @@ const NavBar = () => {
       type: "LOGOUT",
     });
   };
+  const ImageLink = "http://localhost:8000/images/";
   return (
     <div className="top">
       <div className="topLeft"></div>
@@ -41,7 +42,11 @@ const NavBar = () => {
           <Link className="link" to="/settings">
             <img
               className="profileImage"
-              src={user.profilePic}
+              src={
+                user.profilePic
+                  ? ImageLink + user.profilePic + ".jpg"
+                  : ImageLink + "default.png"
+              }
               alt="profilePic"
             />
           </Link>
