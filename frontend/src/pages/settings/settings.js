@@ -12,12 +12,13 @@ const Settings = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
-  const { user } = useContext(Context);
+  const { user, dispatch } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch({ type: "UPDATE_START" });
     const updatedUser = {
       userId: user._id,
       username,
@@ -34,9 +35,13 @@ const Settings = () => {
         console.log("error in upload");
       });
     }
-    await axios.put("/users/" + user._id, updatedUser).catch(() => {
-      setError(true);
-    });
+    await axios
+      .put("/users/" + user._id, updatedUser)
+      .then(
+        (resp) => dispatch({ type: "UPDATE_SUCCESS", payload: resp.data }),
+        setUpdated(true)
+      )
+      .catch(() => dispatch({ type: "UPDATE_FAILURE" }));
   };
   const ImageLink = "http://localhost:8000/images/";
   return (
@@ -94,7 +99,13 @@ const Settings = () => {
           <button className="updateButton" type="submit">
             Update
           </button>
-          {error && <h1>Error while updating the credentials</h1>}
+          {updated && (
+            <span
+              style={{ color: "green", textAlign: "center", marginTop: "20px" }}
+            >
+              UserProfile updated successfully
+            </span>
+          )}
         </form>
       </div>
 
