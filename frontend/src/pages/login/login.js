@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { Context } from "../../context/Context";
 
 const { Link } = require("react-router-dom");
@@ -8,6 +8,7 @@ require("./login.css");
 const Login = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
+  const [error, setError] = useState(false);
   const { dispatch, isFetching } = useContext(Context);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,9 +21,7 @@ const Login = () => {
       .then((resp) => {
         dispatch({ type: "LOGIN_SUCCESS", payload: resp.data });
       })
-      .catch((err) => {
-        dispatch({ type: "LOGIN_FAILURE" });
-      });
+      .catch(() => dispatch({ type: "LOGIN_FAILURE" }) , setError(true));
   };
   return (
     <div className="login">
@@ -49,6 +48,7 @@ const Login = () => {
       <Link className="link" to="/signup">
         <button className="registerButton">Register</button>
       </Link>
+      {error && <label style={{ color: "red" }}>Wrong credentials</label>}
     </div>
   );
 };
