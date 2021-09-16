@@ -45,6 +45,6 @@ App.use("/api/users", userRoute);
 App.use("/api/posts", postRoute);
 App.use("/api/categories", categoryRoute);
 
-App.listen(process.env.PORT_NO, () => {
+App.listen(process.env.PORT || 5000, () => {
   console.log("server running");
 });
