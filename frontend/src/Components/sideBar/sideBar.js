@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 require("./sideBar.css");
 const SideBar = () => {
+  const ImageLink = "http://localhost:8000/images/";
   const [category, setCategory] = useState([]);
   const getData = async () => {
     const res = await axios.get("/categories");
@@ -16,24 +17,27 @@ const SideBar = () => {
   return (
     <div className="sideBar">
       <div className="sideBarItem">
-        <span className="sideBarTitle">About Me</span>
-        <img
-          src="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandblog/demo/wp-content/uploads/2015/11/aboutme.jpg"
-          alt=""
-        />
+        <span className="sideBarTitle">About This Blog</span>
+        <Link to="/">
+          <img
+            className="sideBarImage"
+            src={ImageLink + "/sidebarImage.jpg"}
+            alt=""
+          />
+        </Link>
         <p>
-          Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit
-          amet ex esse.Sunt eu ut nostrud id quis proident.
+          This blog is an easy and free to share your thinking on any topic,
+          connect with an audience, express yourself with a range of publishing
+          tools, and even earn money for your work.
         </p>
       </div>
       <div className="sideBarItem">
         <span className="sideBarTitle">Categories</span>
         <ul className="sideBarList">
           {category.map((cate, key) => (
-           <Link to={`/?category=${cate.name}`} className='link'>
-            <li className="sideBarListItem" key={key}>
-              {cate.name}
-            </li></Link>
+            <Link to={`/?category=${cate.name}`} className="link" key={key}>
+              <li className="sideBarListItem">{cate.name}</li>
+            </Link>
           ))}
         </ul>
       </div>
