@@ -21,6 +21,7 @@ const SinglePost = () => {
       setTitle(res.data.title);
       setDescription(res.data.description);
     };
+    window.scrollTo(0,0)
 
     getPost();
   }, [path]);
@@ -99,7 +100,7 @@ const SinglePost = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         ) : (
-          <p className="postDescription">{description}</p>
+          <div className="postDescription">{description}</div>
         )}
         {updateMode && (
           <div className="updateButtonDiv">
