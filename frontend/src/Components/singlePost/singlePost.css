@@ -61,6 +61,8 @@
   font-size: 18px;
   line-height: 25px;
   font-family: "Varela Round", sans-serif;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .postDescription::first-letter {

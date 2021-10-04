@@ -27,14 +27,16 @@
   color: #222222;
   font-weight: 600;
 }
-.sideBarItem > img {
+.sideBarImage{
   margin-top: 15px;
   width: 250px;
   height: 250px;
   border-radius: 5px;
+  object-fit: cover;
 }
 .sideBarItem > p {
   padding: 30px;
+  text-align: center;
 }
 .sideBarSocial {
   margin-top: 15px;
