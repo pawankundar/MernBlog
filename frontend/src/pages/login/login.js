@@ -2,7 +2,6 @@ import axios from "axios";
 import { useContext, useRef } from "react";
 import { Context } from "../../context/Context";
 
-const { Link } = require("react-router-dom");
 
 require("./login.css");
 const Login = () => {
@@ -27,6 +26,7 @@ const Login = () => {
       <span className="loginTitle">Login</span>
       <form className="loginForm" onSubmit={handleSubmit}>
         <label>Username</label>
+        <hr className="labelLine"/>
         <input
           className="input"
           type="text"
@@ -34,6 +34,7 @@ const Login = () => {
           ref={usernameRef}
         />
         <label>Password</label>
+        <hr className="labelLine"/>
         <input
           className="input"
           type="password"
@@ -43,11 +44,8 @@ const Login = () => {
         <button className="loginButton" type="submit" disabled={isFetching}>
           Login
         </button>
+      {error && <label style={{ color: "red" }}>Wrong credentials ⚠️</label>}
       </form>
-      <Link className="link" to="/signup">
-        <button className="registerButton">Register</button>
-      </Link>
-      {error && <label style={{ color: "red" }}>Wrong credentials</label>}
     </div>
   );
 };

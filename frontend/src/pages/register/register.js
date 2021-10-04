@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 
-const { Link } = require("react-router-dom");
-
 require("./register.css");
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -29,6 +27,7 @@ const Register = () => {
       <span className="Registertitle">Register</span>
       <form className="registerForm" onSubmit={handleSubmit}>
         <label>Username</label>
+        <hr className="labelLine"/>
         <input
           type="text"
           className="registerInput"
@@ -37,6 +36,7 @@ const Register = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
         <label>Email</label>
+        <hr className="labelLine"/>
         <input
           type="email"
           className="registerInput"
@@ -45,6 +45,7 @@ const Register = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <label>Password</label>
+        <hr className="labelLine"/>
         <input
           type="password"
           className="registerInput"
@@ -60,11 +61,8 @@ const Register = () => {
             Registration Successful redirecting to Login page....
           </label>
         )}
-        {error && <label style={{ color: "red" }}>Something went wrong</label>}
+        {error && <label style={{ color: "red" }}>Something went wrong ⚠️</label>}
       </form>
-      <Link className="link" to="/login">
-        <button className="loginBtn">Login</button>
-      </Link>
     </div>
   );
 };

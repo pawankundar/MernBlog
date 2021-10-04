@@ -17,12 +17,18 @@
   align-self: center;
   font-size: 50px;
 }
+.labelLine {
+  width: 100px;
+}
 
 .registerForm {
   margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  width: 250px;
+  border-radius: 15px;
 }
 
 .registerForm > label {
@@ -33,29 +39,20 @@
 
 .registerInput {
   padding: 10px;
-  border: none;
+  margin-top: 10px;
   background-color: white;
+  border: none;
   border-radius: 7px;
+  text-align: center;
 }
 
 .registerBtn {
   margin-top: 20px;
+  margin-bottom: 20px;
   cursor: pointer;
   background-color: tomato;
   border: none;
   color: white;
   border-radius: 10px;
   padding: 10px;
-}
-
-.loginBtn {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color: teal;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
 }
