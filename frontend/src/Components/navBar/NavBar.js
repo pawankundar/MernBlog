@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./NavBar.css";
 
 const NavBar = () => {
   const { user, dispatch } = useContext(Context);
+  const location = useLocation();
   const handleLogout = () => {
     dispatch({
       type: "LOGOUT",
@@ -17,18 +18,12 @@ const NavBar = () => {
       <div className="topCenter">
         <ul className="List">
           <Link className="link" to="/">
-            <li className="listItem">HOME</li>
-          </Link>
-          <Link className="link" to="">
-            <li className="listItem">ABOUT</li>
-          </Link>
-          <Link className="link" to="">
-            <li className="listItem">CONTACT</li>
+            {location.pathname !== "/" && <li className="listItem">HOME</li>}
           </Link>
           <Link className="link" to="/write">
             {user && <li className="listItem">WRITE</li>}
           </Link>
-          <Link className="link">
+          <Link className="link" to=''>
             {user && (
               <li className="listItem" onClick={handleLogout}>
                 LOGOUT
